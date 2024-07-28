@@ -10,12 +10,8 @@ import org.springframework.transaction.annotation.Transactional
 class EmployeeServiceImpl @Autowired constructor(val employeeRepository: EmployeeRepository) : EmployeeService {
 
     override fun findById(id: Int): Employee? {
-        val employee = employeeRepository.findById(id)
-        if(employee.isPresent.not()){
-            throw RuntimeException("Employee not found")
-        }
-        return employee.get()
-
+        val employee = employeeRepository.findById(id).get()
+        return employee
     }
 
     override fun findAll(): List<Employee> {
